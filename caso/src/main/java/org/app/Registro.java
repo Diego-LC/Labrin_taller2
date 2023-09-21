@@ -52,6 +52,7 @@ public class Registro {
 
                     while(true) {
                         try {
+                            System.out.println("\nIngrese el estado civil de la persona");
                             Estadocivil = new Scanner(System.in).nextLine();
                         } catch (InputMismatchException e) {
                             System.err.println("Opción inválida");
@@ -65,6 +66,7 @@ public class Registro {
 
                     while(true) {
                         try {
+                            System.out.println("\nIngrese la edad de la persona");
                             edad = new Scanner(System.in).nextInt();
                         } catch (InputMismatchException e) {
                             System.err.println("Opción inválida");
@@ -86,14 +88,10 @@ public class Registro {
             } else if(opcion == 2) {
                 int mayoresDeEdad = 0;
 
-
-
-
                 for (String[] persona : registro) {
+
                     if (parseDouble(persona[2]) >= 18) mayoresDeEdad++;
                 }
-
-
 
 
                 System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
@@ -161,8 +159,6 @@ public class Registro {
     public static int obtenerUltimoEspacio(String[][] registro) {
         return registro.length - 1;
     }
-
-
 
 
     public static boolean hayCupo(String[][] registro) {
