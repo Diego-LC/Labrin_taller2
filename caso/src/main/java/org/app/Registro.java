@@ -38,6 +38,7 @@ public class Registro {
 
                     while(true) {
                         try {
+                            System.out.println("\nIngrese el nombre de la persona");
                             nombre = new Scanner(System.in).nextLine();
                         } catch (InputMismatchException e) {
                             System.err.println("Opción inválida");
@@ -165,7 +166,7 @@ public class Registro {
 
 
     public static boolean hayCupo(String[][] registro) {
-        return pocisionUltimoCupo(registro) == 0;
+        return pocisionUltimoCupo(registro) != 0;
     }
 
 
@@ -173,10 +174,7 @@ public class Registro {
 
     public static int pocisionUltimoCupo(String[][] registro) {
         for(int i = 0; i < registro.length; i++) {
-            if (registro[i][0] == null){
-                return 0;
-            }
-            if(registro[i][0].isEmpty()){
+            if(registro[i][0] == null){
                 return registro.length - i;
             }
         }

@@ -29,3 +29,4 @@ errores estructurales:
 - `int a = -1;` renombrado -> `int opcion = -1;`
 - Extraído el bloque try/catch para obtener la opción a un método de la clase
 - `public static int opa(String[][] registro) {}` renombrado a `public static int pocisionUltimoCupo(String[][] registro) {}`
+- `if(registro[i][0].isEmpty()){}` cambiado a `if(registro[i][0] == null){}`
