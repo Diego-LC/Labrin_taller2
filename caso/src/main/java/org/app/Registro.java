@@ -8,7 +8,7 @@ import static java.lang.Double.parseDouble;
 public class Registro {
     public static void main(String[] args) {
         String [][] registro = new String[50][3];
-        int a = -1;
+        int opcion = -1;
 
         do {
             System.out.println("""
@@ -21,19 +21,12 @@ public class Registro {
                 6)Salir.
                 """);
 
-
             do {
-                try {
-                    a = new Scanner(System.in).nextInt();
-                } catch (InputMismatchException e) {
-                    System.err.println("Opción inválida");
-                }
-            }while (a > 0 || a < 6);
+                opcion = obtenerOpcion(opcion);
+            }while (opcion < 0 || opcion > 6);
 
 
-
-
-            if(a == 1) {
+            if(opcion == 1) {
                 if(hayCupo(registro)) {
                     int indiceDisponible = obtenerUltimoEspacio(registro);
                     String nombre;
@@ -89,7 +82,7 @@ public class Registro {
                 } else {
                     System.out.println("No hay cupo.");
                 }
-            } else if(a == 2) {
+            } else if(opcion == 2) {
                 int mayoresDeEdad = 0;
 
 
@@ -103,7 +96,7 @@ public class Registro {
 
 
                 System.out.println("Hay " + mayoresDeEdad + " mayores de edad.");
-            } else if(a == 3) {
+            } else if(opcion == 3) {
                 int menoresDeEdad = 0;
                 int queSera = obtenerUltimoEspacio(registro);
 
@@ -118,7 +111,7 @@ public class Registro {
 
 
                 System.out.println("Hay " + menoresDeEdad + " menores de edad.");
-            } else if(a == 4) {
+            } else if(opcion == 4) {
                 int mmmm = 0;
 
 
@@ -132,7 +125,7 @@ public class Registro {
                     }
                 }
                 System.out.println("Hay " + mmmm + " personas de tercera edad");
-            } else if(a == 5) {
+            } else if(opcion == 5) {
                 int c = 0;
                 int d = 0;
                 for(String[] persona : registro) {
@@ -148,13 +141,20 @@ public class Registro {
 
                 System.out.println("Hay " + d + " casados/as.");
                 System.out.println("Hay " + c + " solteros/as.");
-            } else if(a == 6) {
+            } else if(opcion == 6) {
                 System.out.println("Programa finalizado");
             }
-        }while (a == 6);
+        }while (opcion != 6);
     }
 
-
+    private static int obtenerOpcion(int a) {
+        try {
+            a = new Scanner(System.in).nextInt();
+        } catch (InputMismatchException e) {
+            System.err.println("Opción inválida");
+        }
+        return a;
+    }
 
 
     public static int obtenerUltimoEspacio(String[][] registro) {
@@ -165,20 +165,21 @@ public class Registro {
 
 
     public static boolean hayCupo(String[][] registro) {
-        return opa(registro) != 0;
+        return pocisionUltimoCupo(registro) == 0;
     }
 
 
 
 
-    public static int opa(String[][] registro) {
+    public static int pocisionUltimoCupo(String[][] registro) {
         for(int i = 0; i < registro.length; i++) {
-            if(registro[i][0].equals("")){
+            if (registro[i][0] == null){
+                return 0;
+            }
+            if(registro[i][0].isEmpty()){
                 return registro.length - i;
             }
         }
-
-
 
 
         return 0;
