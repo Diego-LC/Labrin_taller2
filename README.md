@@ -22,12 +22,15 @@ errores sintácticos:
 - ` if (persona[2] >= 18) mayoresDeEdad++;}` Error en tipo de variables comparadas -> `if (parseDouble(persona[2]) >= 18) mayoresDeEdad++;`
   - `import static java.lang.Double.parseDouble;` añadida librería necesaria
 
-errores estructurales:
+errores estructurales y refactorizaciones:
 
 - `do {a = obtenerOpcion(a);} while (a > 0 || a < 6);` Argumento condicional del while cambiado a `while (a < 0 || a > 6);`
 - `while (a == 6);` argumento condicional cambiado a `while (a != 6);`
 - `int a = -1;` renombrado -> `int opcion = -1;`
 - Extraído el bloque try/catch para obtener la opción a un método de la clase
 - `public static int opa(String[][] registro) {}` renombrado a `public static int pocisionUltimoCupo(String[][] registro) {}`
-- `if(registro[i][0].isEmpty()){}` cambiado a `if(registro[i][0] == null){}`
+- `if(registro[i][0].isEmpty()){}` cambiado a `if(registro[i][0] == null){}` para corregir error
 - `System.out.println("\nIngrese el nombre de la persona"); nombre = ...` añadido
+- extraído código del main a un método iniciarMenu()
+- extraído código de iniciar menú a elegirOpciones()
+- añadido `if (persona[2] != null) { if...` para corregir error en opción 2
